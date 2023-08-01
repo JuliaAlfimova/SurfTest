@@ -16,18 +16,19 @@ final class ProfileVC: UIViewController {
     private let userBio = "iOS разработчик"
     private let userLocation = "Москва"
     private let skillsTitle = "Мои навыки"
-    private let skills = ["Swift", "UIKit", "ООП и SOLID", "Auto Layout", "SwiftUI", "Git", "Figma", "С#", "C++"]
+    private let skills = ["Swift", "UIKit", "ООП и SOLID", "Auto Layout", "SwiftUI", "Git", "Figma", "UX/UI", "С#", "C++"]
     private let aboutTitle = "О себе"
-    private let aboutUser = "Мне 21 год. В этом году закончила МГТУ им. Н.Э. Баумана по направлению «Бизнес-информатика».\nЛюблю систему iOS за ее уникальный и красивый внешний вид и самые удобные паттерны поведения. Очень нравится идея о том, что можно создавать приложения в рамках этой системы, которыми ежедневно пользуется множество людей. А еще просто искренне люблю кодить :)\nИмею опыт разработки в учебных проектах, один из которых - приложение по поиску мероприятий PartyHub - есть в AppStore. Очень хочу продолжать расти в iOS-разработке, ищу опытную и интересную команду, в которой смогла бы полноценно развиваться и при этом действительно приносить пользу. Спасибо за уделенное время :)"
+    private let aboutUser = "Мне 21 год. В этом году закончила МГТУ им. Н.Э. Баумана по направлению «Бизнес-информатика».\nЛюблю систему iOS за ее уникальный и красивый внешний вид и самые удобные паттерны поведения. Очень нравится идея о том, что можно создавать приложения в рамках этой системы, которыми ежедневно пользуется множество людей. А еще просто искренне люблю кодить :)\nИмею опыт разработки в учебных проектах, один из которых - приложение по поиску мероприятий PartyHub - есть в AppStore. Очень хочу продолжать расти в iOS-разработке, ищу опытную и интересную команду, в которой смогла бы полноценно развиваться и при этом действительно приносить пользу. Спасибо за уделенное время :)\nUPD Не успеваю доделать все идеально, как я хотела, ноо в какой-то момент я вообще не верила, что у меня получится, поэтому все равно рада результату. Спасибо!"
     private let userPhotoImageName = "user photo"
-    private let editingImagename = "pencil"
-    private let doneImagename = "checkmark.circle"
+    private let editingImageName = "pencil"
+    private let doneImageName = "checkmark.circle"
 
     private let bigFontSize: CGFloat = 16
     private let smallFontSize: CGFloat = 14
-    private let editingButtonSize: CGFloat = 15
+    private let editingButtonSize: CGFloat = 24
     private let bigPadding: CGFloat = 16
     private let smallPadding: CGFloat = 8
+    private var isEditingMode = false
 
     private let navigationBar = UINavigationBar()
     private let scrollView = UIScrollView()
@@ -61,7 +62,7 @@ extension ProfileVC: UIScrollViewDelegate {
         setupSkillView()
         setupAboutTitleLabel()
         setupAboutUserLabel()
-
+        setupEditingButton()
     }
 
     private func setupScrollView() {
@@ -139,21 +140,45 @@ extension ProfileVC: UIScrollViewDelegate {
         editingButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             editingButton.topAnchor.constraint(equalTo: skillsTitleLabel.topAnchor),
-            editingButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: bigPadding),
+            editingButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -bigPadding),
             editingButton.widthAnchor.constraint(equalToConstant: editingButtonSize),
             editingButton.heightAnchor.constraint(equalToConstant: editingButtonSize)
         ])
+        editingButton.tintColor = .label
+        updateEditingButtonSymbol()
+        editingButton.addTarget(self, action: #selector(editingButtonTapped), for: .touchUpInside)
+    }
+
+    private func updateEditingButtonSymbol() {
+        let symbolName = isEditingMode ? doneImageName : editingImageName
+        let configuration = UIImage.SymbolConfiguration(scale: .large)
+        let image = UIImage(systemName: symbolName, withConfiguration: configuration)
+        editingButton.setImage(image, for: .normal)
     }
 
     // MARK: - Actions
 
+    @objc private func editingButtonTapped() {
+        isEditingMode.toggle()
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: [], animations: {
+            self.updateEditingButtonSymbol()
+            self.editingButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        }) { (_) in
+            UIView.animate(withDuration: 0.2) {
+                self.editingButton.transform = .identity
+            }
+        }
+        skillView.setMode(isEditingMode)
+
+    }
+
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-//        print("Начало прокрутки UIScrollView")
+        //        print("Начало прокрутки UIScrollView")
 
     }
 
     func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
-//        print("scrollViewDidScrollToTop")
+        //        print("scrollViewDidScrollToTop")
     }
 
 }
