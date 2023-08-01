@@ -16,9 +16,9 @@ final class ProfileVC: UIViewController {
     private let userBio = "iOS разработчик"
     private let userLocation = "Москва"
     private let skillsTitle = "Мои навыки"
-    private let skills = ["Swift", "UIKit", "ООП и SOLID", "Auto Layout", "MVVM", "SwiftUI", "Git", "Figma"]
+    private let skills = ["Swift", "UIKit", "ООП и SOLID", "Auto Layout", "SwiftUI", "Git", "Figma", "С#", "C++"]
     private let aboutTitle = "О себе"
-    private let aboutUser = "21 год, iOS разработчик, люблю кодить"
+    private let aboutUser = "Мне 21 год. В этом году закончила МГТУ им. Н.Э. Баумана по направлению «Бизнес-информатика».\nЛюблю систему iOS за ее уникальный и красивый внешний вид и самые удобные паттерны поведения. Очень нравится идея о том, что можно создавать приложения в рамках этой системы, которыми ежедневно пользуется множество людей. А еще просто искренне люблю кодить :)\nИмею опыт разработки в учебных проектах, один из которых - приложение по поиску мероприятий PartyHub - есть в AppStore. Очень хочу продолжать расти в iOS-разработке, ищу опытную и интересную команду, в которой смогла бы полноценно развиваться и при этом действительно приносить пользу. Спасибо за уделенное время :)"
     private let userPhotoImageName = "user photo"
     private let editingImagename = "pencil"
     private let doneImagename = "checkmark.circle"
@@ -31,7 +31,7 @@ final class ProfileVC: UIViewController {
     private let infoView = InfoView()
     private let skillsTitleLabel = UILabel()
     private let editingButton = UIButton()
-    //skills
+    private let skillView = SkillsView()
     private let aboutTitleLabel = UILabel()
     private let aboutUserLabel = UILabel()
 
@@ -55,6 +55,7 @@ extension ProfileVC: UIScrollViewDelegate {
         setupScrollView()
         setupInfoView()
         setupSkillsTitleLabel()
+        setupSkillView()
         setupAboutTitleLabel()
         setupAboutUserLabel()
 
@@ -70,8 +71,6 @@ extension ProfileVC: UIScrollViewDelegate {
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         scrollView.delegate = self
-//        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 10000)
-
     }
 
     private func setupInfoView() {
@@ -93,8 +92,20 @@ extension ProfileVC: UIScrollViewDelegate {
         skillsTitleLabel.text = skillsTitle
     }
 
+
+    private func setupSkillView() {
+        scrollView.addSubview(skillView)
+        skillView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            skillView.topAnchor.constraint(equalTo: skillsTitleLabel.bottomAnchor, constant: bigPadding),
+            skillView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: bigPadding),
+            skillView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -bigPadding)
+        ])
+        skillView.configure(skills: skills)
+    }
+
     private func setupAboutTitleLabel() {
-        setupLabel(label: aboutTitleLabel, topAnchor: skillsTitleLabel.bottomAnchor)
+        setupLabel(label: aboutTitleLabel, topAnchor: skillView.bottomAnchor)
         aboutTitleLabel.font = .systemFont(ofSize: 16, weight: .medium)
         aboutTitleLabel.text = aboutTitle
     }
@@ -103,7 +114,7 @@ extension ProfileVC: UIScrollViewDelegate {
         setupLabel(label: aboutUserLabel, topAnchor: aboutTitleLabel.bottomAnchor)
         aboutUserLabel.font = .systemFont(ofSize: 14, weight: .regular)
         aboutUserLabel.numberOfLines = 0
-        aboutUserLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?"
+        aboutUserLabel.text = aboutUser
         aboutUserLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
     }
 
@@ -123,12 +134,12 @@ extension ProfileVC: UIScrollViewDelegate {
     // MARK: - Actions
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        print("Начало прокрутки UIScrollView")
+//        print("Начало прокрутки UIScrollView")
 
     }
 
     func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
-        print("scrollViewDidScrollToTop")
+//        print("scrollViewDidScrollToTop")
     }
 
 }
