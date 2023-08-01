@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  InfoView.swift
 //  SurfTest
 //
 //  Created by juliemoorled on 01.08.2023.
@@ -11,10 +11,10 @@ final class InfoView: UIView {
 
     // MARK: - Private properties
 
+    private let locationImageName = "mappin.and.ellipse"
     private let userImageViewSizeConst: CGFloat = 120
     private let bigPadding: CGFloat = 16
     private let smallPadding: CGFloat = 8
-    private let locationImageName = "mappin.and.ellipse"
 
     private let userImageView = UIImageView()
     private let userNameLabel = UILabel()
