@@ -23,6 +23,9 @@ final class ProfileVC: UIViewController {
     private let editingImagename = "pencil"
     private let doneImagename = "checkmark.circle"
 
+    private let bigFontSize: CGFloat = 16
+    private let smallFontSize: CGFloat = 14
+    private let editingButtonSize: CGFloat = 15
     private let bigPadding: CGFloat = 16
     private let smallPadding: CGFloat = 8
 
@@ -88,7 +91,7 @@ extension ProfileVC: UIScrollViewDelegate {
 
     private func setupSkillsTitleLabel() {
         setupLabel(label: skillsTitleLabel, topAnchor: infoView.bottomAnchor)
-        skillsTitleLabel.font = .systemFont(ofSize: 16, weight: .medium)
+        skillsTitleLabel.font = .systemFont(ofSize: bigFontSize, weight: .medium)
         skillsTitleLabel.text = skillsTitle
     }
 
@@ -106,13 +109,13 @@ extension ProfileVC: UIScrollViewDelegate {
 
     private func setupAboutTitleLabel() {
         setupLabel(label: aboutTitleLabel, topAnchor: skillView.bottomAnchor)
-        aboutTitleLabel.font = .systemFont(ofSize: 16, weight: .medium)
+        aboutTitleLabel.font = .systemFont(ofSize: bigFontSize, weight: .medium)
         aboutTitleLabel.text = aboutTitle
     }
 
     private func setupAboutUserLabel() {
         setupLabel(label: aboutUserLabel, topAnchor: aboutTitleLabel.bottomAnchor)
-        aboutUserLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        aboutUserLabel.font = .systemFont(ofSize: smallFontSize, weight: .regular)
         aboutUserLabel.numberOfLines = 0
         aboutUserLabel.text = aboutUser
         aboutUserLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
@@ -129,6 +132,17 @@ extension ProfileVC: UIScrollViewDelegate {
         ])
         label.textAlignment = .left
         label.tintColor = .label
+    }
+
+    private func setupEditingButton() {
+        scrollView.addSubview(editingButton)
+        editingButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            editingButton.topAnchor.constraint(equalTo: skillsTitleLabel.topAnchor),
+            editingButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: bigPadding),
+            editingButton.widthAnchor.constraint(equalToConstant: editingButtonSize),
+            editingButton.heightAnchor.constraint(equalToConstant: editingButtonSize)
+        ])
     }
 
     // MARK: - Actions

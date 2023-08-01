@@ -13,6 +13,8 @@ final class InfoView: UIView {
 
     private let locationImageName = "mappin.and.ellipse"
     private let userImageViewSizeConst: CGFloat = 120
+    private let bigFontSize: CGFloat = 24
+    private let smallFontSize: CGFloat = 14
     private let bigPadding: CGFloat = 16
     private let smallPadding: CGFloat = 8
 
@@ -74,14 +76,14 @@ extension InfoView {
 
     private func setupUserNameLabel() {
         setupInfoLabel(label: userNameLabel, topAnchor: userImageView.bottomAnchor)
-        userNameLabel.font = .systemFont(ofSize: 24, weight: .bold)
+        userNameLabel.font = .systemFont(ofSize: bigFontSize, weight: .bold)
         userNameLabel.textColor = .label
         userNameLabel.text = "Name"
     }
 
     private func setupUserBioLabel() {
         setupInfoLabel(label: userBioLabel, topAnchor: userNameLabel.bottomAnchor)
-        userBioLabel.font = .systemFont(ofSize: 14)
+        userBioLabel.font = .systemFont(ofSize: smallFontSize)
         userBioLabel.textColor = .systemGray
         userBioLabel.text = "Bio"
     }
@@ -95,7 +97,7 @@ extension InfoView {
         attributedString.append(NSAttributedString(attachment: iconAttachment))
         attributedString.append(NSAttributedString(string: " "))
         let textAttributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 14),
+            .font: UIFont.systemFont(ofSize: smallFontSize),
             .foregroundColor: UIColor.systemGray
         ]
         let textAttributedString = NSAttributedString(string: "Location", attributes: textAttributes)
