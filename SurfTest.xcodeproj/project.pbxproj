@@ -13,6 +13,7 @@
 		E958DBE62A78D53F000BD902 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E958DBE52A78D53F000BD902 /* Assets.xcassets */; };
 		E958DBE92A78D53F000BD902 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E958DBE72A78D53F000BD902 /* LaunchScreen.storyboard */; };
 		E958DBF12A78EE01000BD902 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958DBF02A78EE01000BD902 /* InfoView.swift */; };
+		E958DBF52A793E21000BD902 /* SkillsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E958DBF42A793E21000BD902 /* SkillsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E958DBE82A78D53F000BD902 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E958DBEA2A78D53F000BD902 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E958DBF02A78EE01000BD902 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		E958DBF42A793E21000BD902 /* SkillsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				E958DBDE2A78D53E000BD902 /* SceneDelegate.swift */,
 				E958DBE02A78D53E000BD902 /* ProfileVC.swift */,
 				E958DBF02A78EE01000BD902 /* InfoView.swift */,
+				E958DBF42A793E21000BD902 /* SkillsView.swift */,
 				E958DBE52A78D53F000BD902 /* Assets.xcassets */,
 				E958DBE72A78D53F000BD902 /* LaunchScreen.storyboard */,
 				E958DBEA2A78D53F000BD902 /* Info.plist */,
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E958DBE12A78D53E000BD902 /* ProfileVC.swift in Sources */,
+				E958DBF52A793E21000BD902 /* SkillsView.swift in Sources */,
 				E958DBF12A78EE01000BD902 /* InfoView.swift in Sources */,
 				E958DBDD2A78D53E000BD902 /* AppDelegate.swift in Sources */,
 				E958DBDF2A78D53E000BD902 /* SceneDelegate.swift in Sources */,
